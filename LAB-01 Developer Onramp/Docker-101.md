@@ -4,6 +4,7 @@
 
 This guide introduces containerization concepts through basic command-line activities. It assumes `docker` is installed and that you can use a terminal.
 
+> [!TIP]
 > **Course context:** Docker can give every student a consistent environment for the simulator, robotics middleware, build dependencies, etc. even when host computers differ.
 
 ## Learning goals
@@ -44,7 +45,7 @@ A container is not a lightweight virtual machine in every respect. It shares the
 
 ## 1. Install and configure Docker
 
-> ![TIP]
+> [!TIP]
 > Please refer to the official [Docker installation guide](https://docs.docker.com/get-started/get-docker) for detailed installation instructions.
 
 Verify the installation:
@@ -55,6 +56,7 @@ docker compose version
 docker info
 ```
 
+> [!TIP]
 > Membership in the `docker` group effectively grants administrator-level control of the host; treat it as privileged access. Avoid routinely prefixing every Docker command with `sudo` unless that is how your system was intentionally configured.
 
 ```bash
@@ -131,6 +133,7 @@ docker stop av-racing-lab
 docker rm av-racing-lab
 ```
 
+> [!TIP]
 > Name your containers with `--name`, such as `av-racing-lab`; they are easier to remember than generated container IDs.
 
 ## 4. Images
@@ -149,6 +152,7 @@ Remove a locally unused image by exact name and tag:
 docker image rm ubuntu:22.04
 ```
 
+> [!TIP]
 > Docker refuses removal of the image if a container still depends on it, unless forced. Avoid force removal while learning.
 
 ## 5. Bind mounts
@@ -175,6 +179,7 @@ docker run --rm \
 - `target=/data` is where it appears in the container.
 - `-w /data` sets the container's working directory.
 
+> [!TIP]
 > Changes made through a writable bind mount also change the host files. Add `readonly` when the container only needs to read them:
 > ```bash
 > docker run --rm \
@@ -216,6 +221,7 @@ docker volume inspect race-data
 docker volume rm race-data
 ```
 
+> [!WARNING]
 > Removing a volume deletes its stored data. Verify its name and contents first.
 
 ## 7. Port mapping
@@ -341,6 +347,7 @@ docker run --rm \
   printenv VEHICLE_NAME
 ```
 
+> [!WARNING]
 > Do not place sensitive information directly in Dockerfiles, image layers, shell history, documentation, or any other files.
 
 ## 11. Resource limits
@@ -389,6 +396,7 @@ docker image rm <IMAGE_NAME>:<TAG>
 docker volume rm <VOLUME_NAME>
 ```
 
+> [!WARNING]
 > Prune commands can remove many unused resources at once. Do not run `docker system prune`, especially with `--volumes`, unless you have reviewed what can be deleted and backed up anything important.
 
 ## Compact command reference
