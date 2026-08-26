@@ -1,5 +1,7 @@
 # Linux 101
 
+**Authors:** [Chinmay Samak](https://www.linkedin.com/in/samakchinmay) and [Tanmay Samak](https://www.linkedin.com/in/samaktanmay)
+
 This guide introduces the Linux command line through small, safe activities. It assumes Ubuntu 22.04 and no previous terminal experience.
 
 > **Course context:** autonomous-vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded-computing workflows are commonly developed for it.
@@ -319,7 +321,7 @@ apropos "copy files"
 
 In a manual page, press `/` to search and `q` to quit. A good habit is to inspect a command's help before using unfamiliar commands or options.
 
-## 8. Compact command reference
+## Compact command reference
 
 | Task | Command |
 |---|---|
@@ -340,7 +342,7 @@ In a manual page, press `/` to search and `q` to quit. A good habit is to inspec
 | Show command history | `history` |
 | Stop a foreground command | `Ctrl`+`C` |
 
-## 9. Common mistakes
+## Common mistakes
 
 - **`command not found`**: check spelling, installation, and capitalization.
 - **`No such file or directory`**: run `pwd` and `ls`; verify the path.

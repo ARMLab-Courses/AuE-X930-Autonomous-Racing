@@ -18,7 +18,7 @@ By the end of this guide, you should be able to:
 - use Docker Compose for a small multi-container setup;
 - clean up resources safely.
 
-## 1. Core mental model
+## Core mental model
 
 ```mermaid
 flowchart LR
@@ -42,7 +42,7 @@ flowchart LR
 
 A container is not a lightweight virtual machine in every respect. It shares the host's Linux kernel while isolating processes, networking, and filesystems.
 
-## 2. Configure Docker
+## 1. Configure Docker
 
 Verify the installation:
 
@@ -62,7 +62,7 @@ docker login -u <YOUR_USERNAME>
 - Web-based authentication: Run `docker login` without flags to use the browser-based device code flow.
 - Log out: Run `docker logout` to clear saved credentials from your local configuration.
 
-## 3. Run containers
+## 2. Run containers
 
 ### Hello world container
 
@@ -97,7 +97,7 @@ exit
 
 The `/tmp/message.txt` file disappears when this `--rm` container exits. Container-local changes are not a substitute for persistent storage.
 
-## 4. Container lifecycle
+## 3. Container lifecycle
 
 Start a detached container:
 
@@ -130,7 +130,7 @@ docker rm av-racing-lab
 
 > Name your containers with `--name`, such as `av-racing-lab`; they are easier to remember than generated container IDs.
 
-## 5. Images
+## 4. Images
 
 ```bash
 docker image ls
@@ -148,7 +148,7 @@ docker image rm ubuntu:22.04
 
 > Docker refuses removal of the image if a container still depends on it, unless forced. Avoid force removal while learning.
 
-## 6. Bind mounts
+## 5. Bind mounts
 
 Create lap time data within the project directory on the host:
 
@@ -180,7 +180,7 @@ docker run --rm \
 >   cat /data/laps.csv
 > ```
 
-## 7. Volumes
+## 6. Volumes
 
 Volumes represent Docker-managed persistent data. Create a volume using:
 
@@ -215,7 +215,7 @@ docker volume rm race-data
 
 > Removing a volume deletes its stored data. Verify its name and contents first.
 
-## 8. Port mapping
+## 7. Port mapping
 
 Run a simple web server:
 
@@ -246,7 +246,7 @@ docker stop nginx-server
 
 Because the container was started with `--rm`, Docker removes it after it stops.
 
-## 9. Build an image with a Dockerfile
+## 8. Build an image with a Dockerfile
 
 Create `~/av-racing-lab/Dockerfile` and open it:
 
@@ -316,7 +316,7 @@ __pycache__
 
 This keeps irrelevant or sensitive files out of the build context. It improves build speed and reduces accidental inclusion.
 
-## 10. Connect to Docker Hub
+## 9. Connect to Docker Hub
 
 Pass a runtime setting:
 
@@ -327,7 +327,7 @@ docker login
 docker push autodriveecosystem/av-racing-lap:v0.1.0
 ```
 
-## 11. Environment variables
+## 10. Environment variables
 
 Pass a runtime setting:
 
@@ -340,7 +340,7 @@ docker run --rm \
 
 > Do not place sensitive information directly in Dockerfiles, image layers, shell history, documentation, or any other files.
 
-## 12. Resource limits
+## 11. Resource limits
 
 Containers share host resources. Limits help prevent one process from consuming the whole machine:
 
@@ -366,7 +366,7 @@ Hardware and graphical applications need extra configuration:
 - GUI applications require display-server configuration.
 - ROS 2 discovery may require deliberate networking configuration.
 
-## 13. Clean up safely
+## 12. Clean up safely
 
 Review resources before removing anything:
 
@@ -388,7 +388,7 @@ docker volume rm <VOLUME_NAME>
 
 > Prune commands can remove many unused resources at once. Do not run `docker system prune`, especially with `--volumes`, unless you have reviewed what can be deleted and backed up anything important.
 
-## 14. Compact command reference
+## Compact command reference
 
 | Task | Command |
 |---|---|
@@ -407,7 +407,7 @@ docker volume rm <VOLUME_NAME>
 | Stop Compose project | `docker compose down` |
 | Show disk use | `docker system df` |
 
-## 15. Common mistakes
+## Common mistakes
 
 - **Confusing image and container**: an image is the template; a container is its instance.
 - **Losing data**: store important output in a bind mount or volume, not only in the container layer.
