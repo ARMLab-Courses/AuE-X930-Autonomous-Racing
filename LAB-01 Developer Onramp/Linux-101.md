@@ -4,6 +4,7 @@
 
 This guide introduces the Linux command line through small, safe activities. It assumes Ubuntu 22.04 and no previous terminal experience.
 
+> [!NOTE]
 > **Course context:** autonomous-vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded-computing workflows are commonly developed for it.
 
 ## Learning goals
@@ -220,6 +221,7 @@ The `-i` option asks for confirmation. Use `y` to confirm, or `n` to cancel.
 
 To remove an empty directory, use `rmdir <DIR_NAME>`.
 
+> [!WARNING]
 > Avoid copying commands such as `rm -rf` until you fully understand the target. Here, `-r` recursively removes directories and `-f` forces confirmation.
 
 ## 3. Edit text in the terminal
