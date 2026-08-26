@@ -1,2 +1,1 @@
-# AuE-X930-Autonomous-Racing
-Autonomous Vehicles: Racing Application @ CU-ICAR
+# AuE 4930/6930: Autonomous Vehicles: Racing Application
