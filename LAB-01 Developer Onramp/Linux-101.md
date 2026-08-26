@@ -1,7 +1,5 @@
 # Linux 101
 
-**Authors:** [Chinmay Samak](https://www.linkedin.com/in/samakchinmay) and [Tanmay Samak](https://www.linkedin.com/in/samaktanmay)
-
 This guide introduces the Linux command line through small, safe activities. It assumes Ubuntu 22.04 and no previous terminal experience.
 
 > **Course context:** autonomous-vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded-computing workflows are commonly developed for it.
@@ -17,6 +15,27 @@ By the end of this guide, you should be able to:
 - manage packages with `apt`;
 - use command history, redirection, and pipes;
 - find help when a command is unfamiliar.
+
+## Core mental model
+
+```mermaid
+flowchart LR
+    terminal["<b>Terminal</b><br/>Where you type commands"]
+    shell["<b>Shell</b><br/>Reads commands and starts programs"]
+    filesystem["<b>Filesystem</b><br/>Files and directories"]
+    process["<b>Process</b><br/>A running program"]
+
+    terminal -->|"command text"| shell
+    shell -->|"<code>cd</code>, <code>ls</code>, <code>mkdir</code>, etc."| filesystem
+    shell -->|"run a program"| process
+    process -->|"read/write"| filesystem
+```
+
+- The **terminal** is the window where you type commands and see output.
+- The **shell** is the program that reads your commands; Bash is a common shell on Ubuntu.
+- The **filesystem** is the tree of directories and files beginning at `/`.
+- A **process** is a program that is currently running.
+- Most commands either inspect or change the filesystem, start a process, or connect these ideas together with pipes and redirection.
 
 ## 1. Meet the terminal
 
