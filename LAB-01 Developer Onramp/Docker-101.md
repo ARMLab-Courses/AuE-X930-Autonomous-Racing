@@ -4,7 +4,7 @@
 
 This guide introduces containerization concepts through basic command-line activities. It assumes `docker` is installed and that you can use a terminal.
 
-> [!TIP]
+> [!NOTE]
 > **Course context:** Docker can give every student a consistent environment for the simulator, robotics middleware, build dependencies, etc. even when host computers differ.
 
 ## Learning goals
