@@ -2,9 +2,9 @@
 
 **Authors:** [Chinmay Samak](https://www.linkedin.com/in/samakchinmay) and [Tanmay Samak](https://www.linkedin.com/in/samaktanmay)
 
-This guide introduces containerization concepts through basic command-line activities. It assumes `docker` is installed and that you can use a terminal. Please refer to the official [Docker installation guide](https://docs.docker.com/get-started/get-docker) for more details.
+This guide introduces containerization concepts through basic command-line activities. It assumes `docker` is installed and that you can use a terminal.
 
-> **Course context:** Docker can give every student a consistent environment for simulator, robotics middleware, build dependencies, etc. even when host computers differ.
+> **Course context:** Docker can give every student a consistent environment for the simulator, robotics middleware, build dependencies, etc. even when host computers differ.
 
 ## Learning goals
 
@@ -42,7 +42,10 @@ flowchart LR
 
 A container is not a lightweight virtual machine in every respect. It shares the host's Linux kernel while isolating processes, networking, and filesystems.
 
-## 1. Configure Docker
+## 1. Install and configure Docker
+
+> ![TIP]
+> Please refer to the official [Docker installation guide](https://docs.docker.com/get-started/get-docker) for detailed installation instructions.
 
 Verify the installation:
 
