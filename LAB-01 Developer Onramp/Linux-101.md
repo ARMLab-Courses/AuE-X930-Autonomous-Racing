@@ -2,7 +2,7 @@
 
 **Authors:** [Chinmay Samak](https://www.linkedin.com/in/samakchinmay) and [Tanmay Samak](https://www.linkedin.com/in/samaktanmay)
 
-This guide introduces the Linux command line through small, safe activities. It assumes Ubuntu 22.04 and no previous terminal experience.
+This guide introduces the Linux command line through short and safe activities. It assumes `Ubuntu 22.04` and no previous terminal experience.
 
 > [!NOTE]
 > **Course context:** Autonomous vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded computing workflows are commonly developed for Linux.
