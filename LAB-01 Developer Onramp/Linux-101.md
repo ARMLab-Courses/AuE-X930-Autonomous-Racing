@@ -355,5 +355,5 @@ In a manual page, press `/` to search and `q` to quit. A good habit is to inspec
 
 ## Further reading
 
-- [The Linux command line for beginners](https://documentation.ubuntu.com/desktop/en/latest/tutorial/the-linux-command-line-for-beginners/)
+- [Linux command line for beginners](https://documentation.ubuntu.com/desktop/en/latest/tutorial/the-linux-command-line-for-beginners)
 - [Ubuntu CLI cheat sheet](https://assets.ubuntu.com/v1/d00791ae-ubuntu_cli_cheat_sheet_2025.pdf)
