@@ -40,7 +40,16 @@ flowchart LR
 - A **process** is a program that is currently running.
 - Most commands either inspect or change the filesystem, start a process, or connect these ideas together with pipes and redirection.
 
-## 1. Meet the terminal
+## 1. Install Ubuntu
+
+This guide assumes `Ubuntu 22.04`. That being said, these basic commands should work on most [Linux distributions](https://en.wikipedia.org/wiki/List_of_Linux_distributions).
+
+> [!TIP]
+> Please refer to the official Ubuntu installation guides for detailed installation instructions:
+> - [Install Ubuntu Desktop](https://ubuntu.com/desktop/docs/en/latest/tutorial/install-ubuntu-desktop)
+> - [Install Ubuntu on WSL 2](https://ubuntu.com/wsl/docs/stable/howto/install-ubuntu-wsl2)
+
+## 2. Meet the terminal
 
 Open the terminal with `Ctrl`+`Alt`+`T`, or search for **Terminal** in the application menu.
 
@@ -76,7 +85,7 @@ pwd
 - Do not use `sudo` unless you understand why administrator access is needed.
 - Read removal commands carefully. Files deleted with `rm` may not go to the Trash.
 
-## 2. Understand the filesystem
+## 3. Understand the filesystem
 
 Linux organizes files in a tree beginning at `/`, called the root directory.
 
@@ -224,7 +233,7 @@ To remove an empty directory, use `rmdir <DIR_NAME>`.
 > [!WARNING]
 > Avoid copying commands such as `rm -rf` until you fully understand the target. Here, `-r` recursively removes directories and `-f` forces confirmation.
 
-## 3. Edit text in the terminal
+## 4. Edit text in the terminal
 
 Ubuntu commonly includes `nano`, a beginner-friendly terminal editor:
 
@@ -241,7 +250,7 @@ echo "Lap summary ready"
 
 Press `Ctrl`+`O`, `Enter` to save, and `Ctrl`+`X` to exit.
 
-## 4. Manage permissions
+## 5. Manage permissions
 
 Check current permission flags:
 
@@ -275,7 +284,7 @@ You can now execute the script to which you granted the `x` permission.
 
 `./` tells the shell to run a program from the current directory. Linux does not search the current directory automatically.
 
-## 5. Manage packages
+## 6. Manage packages
 
 Ubuntu uses the Advanced Package Tool (APT) package manager. Updating package information and installing software requires administrator access:
 
@@ -292,7 +301,7 @@ sudo apt upgrade
 sudo apt install tree
 ```
 
-## 6. Manage processes
+## 7. Manage processes
 
 Start a harmless background process:
 
@@ -313,7 +322,7 @@ jobs
 
 Use `top` for a live process view; press `q` to quit. `ps aux` prints a snapshot.
 
-## 7. Getting help
+## 8. Getting help
 
 ```bash
 man cp
