@@ -346,7 +346,7 @@ In a manual page, press `/` to search and `q` to quit. A good habit is to inspec
 
 ## Common mistakes
 
-- **`command not found`**: check spelling, installation, and capitalization.
+- **`Command not found`**: check spelling, installation, and capitalization.
 - **`No such file or directory`**: run `pwd` and `ls`; verify the path.
 - **`Permission denied`**: inspect `ls -l`; do not carelessly add `sudo`.
 - **Spaces in names**: quote the path, e.g., `cd "My Project"`; or use backslash, e.g., `cd My\ Project`.
