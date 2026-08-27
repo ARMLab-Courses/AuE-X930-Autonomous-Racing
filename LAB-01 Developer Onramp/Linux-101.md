@@ -5,7 +5,7 @@
 This guide introduces the Linux command line through small, safe activities. It assumes Ubuntu 22.04 and no previous terminal experience.
 
 > [!NOTE]
-> **Course context:** autonomous-vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded-computing workflows are commonly developed for it.
+> **Course context:** Autonomous vehicle projects often run on Linux because robotics tools, simulators, build systems, and embedded computing workflows are commonly developed for Linux.
 
 ## Learning goals
 
