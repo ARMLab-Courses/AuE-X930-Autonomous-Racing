@@ -249,12 +249,12 @@ Once the hardware is setup, you can install the [`neoracer_ros2_driver`](https:/
     ```bash
     git clone https://github.com/Neobotics-Foundation-Inc/neoracer-installer.git
     ```    
+> [!IMPORTANT]
+> Unmask the NVIDIA camera service before installing the `neoracer_ros2_driver`:
+> ```bash
+> sudo systemctl unmask nvargus-daemon
+> ```
 - Run the `install.sh` shell script (single-command installation):
-    > [!IMPORTANT]
-    > Unmask the NVIDIA camera service before installing the `neoracer_ros2_driver`:
-    > ```bash
-    > sudo systemctl unmask nvargus-daemon
-    > ```
     ```bash
     bash neoracer-installer/scripts/install.sh
     ```
