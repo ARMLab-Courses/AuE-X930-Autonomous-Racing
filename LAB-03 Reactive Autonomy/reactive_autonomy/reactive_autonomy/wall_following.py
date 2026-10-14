@@ -97,10 +97,6 @@ class PID_Controller:
 
 class Wall_Following(Node):
     def __init__(self):
-        # Node information
-        info = '\nMaintain a safe distance from track boundaries and navigate the racetrack without collisions.\n'
-        print(info)
-
         # Node infrastructure
         super().__init__('wall_following') # Create a node with name 'wall_following'
         qos_profile = QoSProfile( # Ouality of Service profile
@@ -109,18 +105,22 @@ class Wall_Following(Node):
             depth=10 # Queue size/depth of 10 (only honored if the “history” policy was set to “keep last”)
         )
 
+        # Node information
+        info = '\nMaintain a safe distance from track boundaries and navigate the racetrack without collisions.\n'
+        self.get_logger().info(info)
+
         # Node parameters
         self.declare_parameter('control_rate', 10.0) # Control loop execution rate (Hz)
         self.declare_parameter('speed_setpoint', 1.0) # Desired vehicle speed (m/s)
         self.declare_parameter('left_scan_sector', 15.0) # Left laserscan sector (degrees)
-        self.declare_parameter('left_scan_offset', 15.0) # Left laserscan offset (degrees)
+        self.declare_parameter('left_scan_offset', 15.0) # Left laserscan upward offset (degrees)
         self.declare_parameter('right_scan_sector', 15.0) # Right laserscan sector (degrees)
-        self.declare_parameter('right_scan_offset', 15.0) # Right laserscan offset (degrees)
+        self.declare_parameter('right_scan_offset', 15.0) # Right laserscan upward offset (degrees)
         self.declare_parameter('pid_controller_kp', 0.5) # Wall-following PID controller proportional gain
         self.declare_parameter('pid_controller_ki', 0.01) # Wall-following PID controller integral gain
         self.declare_parameter('pid_controller_kd', 0.02) # Wall-following PID controller derivative gain
-        self.declare_parameter('perception_verbose', True) # Verbose perception output
-        self.declare_parameter('control_verbose', True) # Verbose control output
+        self.declare_parameter('perception_verbose', True) # Verbose perception output (boolean)
+        self.declare_parameter('control_verbose', True) # Verbose control output (boolean)
         self.control_rate = self.get_parameter('control_rate').value
         self.speed_setpoint = self.get_parameter('speed_setpoint').value
         self.left_scan_sector = self.get_parameter('left_scan_sector').value
@@ -183,14 +183,14 @@ class Wall_Following(Node):
             end_index = int((LIDAR_RIGHT_IDX + self.right_scan_offset/LIDAR_ANG_RES) + (self.right_scan_sector/LIDAR_ANG_RES)/2)
             self.right_scan = np.mean(msg.ranges[start_index:end_index])
         if self.perception_verbose:
-            print('Left scan: {:.3f} m | Right scan: {:.3f} m'.format(self.left_scan, self.right_scan))
+            self.get_logger().info('Left scan: {:.3f} m | Right scan: {:.3f} m'.format(self.left_scan, self.right_scan))
 
     def control_callback(self):
         # Longitudinal control
         if self.speed_setpoint > SAFE_SPEED_MPS:
             self.speed_setpoint = SAFE_SPEED_MPS # Limit the speed setpoint to the safe speed
             if self.control_verbose:
-                print('Speed setpoint limited to {} m/s'.format(self.speed_setpoint))
+                self.get_logger().warn('Speed setpoint limited to {} m/s'.format(self.speed_setpoint))
         self.ctrl_msg.drive.speed = self.speed_setpoint/MAX_SPEED_MPS # Set linear velocity (normalized)
         # Lateral control
         cte = self.left_scan - self.right_scan # Compute error (distance from either walls)
@@ -208,7 +208,7 @@ class Wall_Following(Node):
                                                                              self.pid_controller_kd))) # Set steering angle (normalized)
         self.vehicle_ctrl_pub.publish(self.ctrl_msg) # Publish vehicle control message
         if self.control_verbose:
-            print('Speed: {:.3f} m/s | Steer: {:.3f} rad | Error: {:.3f} m'.format(self.ctrl_msg.drive.speed*MAX_SPEED_MPS,
+            self.get_logger().info('Speed: {:.3f} m/s | Steer: {:.3f} rad | Error: {:.3f} m'.format(self.ctrl_msg.drive.speed*MAX_SPEED_MPS,
                                                                                    self.ctrl_msg.drive.steering_angle*MAX_STEER_RAD,
                                                                                    cte))
 
