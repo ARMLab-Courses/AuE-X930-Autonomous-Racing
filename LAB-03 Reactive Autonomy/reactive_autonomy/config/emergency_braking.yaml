@@ -30,7 +30,7 @@
   ros__parameters:
     control_rate: 10.0        # Control loop execution rate (Hz)
     speed_setpoint: 1.0       # Desired vehicle speed (m/s)
-    dtc_offset: 0.265         # LIDAR to bumper offset (m)
+    dtc_offset: 0.29          # LIDAR to bumper offset (m)
     dtc_threshold: 0.855      # Threshold for emergency braking (m)
     front_scan_sector: 0.0    # Front laserscan sector (degrees)
     perception_verbose: true  # Verbose perception output (boolean)

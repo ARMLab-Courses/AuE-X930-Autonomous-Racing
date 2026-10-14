@@ -64,7 +64,7 @@ class Emergency_Braking(Node):
         # Node parameters
         self.declare_parameter('control_rate', 10.0) # Control loop execution rate (Hz)
         self.declare_parameter('speed_setpoint', 1.0) # Desired vehicle speed (m/s)
-        self.declare_parameter('dtc_offset', 0.265) # LIDAR to bumper offset (m)
+        self.declare_parameter('dtc_offset', 0.29) # LIDAR to bumper offset (m)
         self.declare_parameter('dtc_threshold', 0.855) # Threshold for emergency braking (m)
         self.declare_parameter('front_scan_sector', 0.0) # Front laserscan sector (degrees)
         self.declare_parameter('perception_verbose', True) # Verbose perception output (boolean)
