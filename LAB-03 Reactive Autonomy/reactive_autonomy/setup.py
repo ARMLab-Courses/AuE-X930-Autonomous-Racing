@@ -56,6 +56,7 @@ setup(
     entry_points={
         'console_scripts': [
             'emergency_braking = reactive_autonomy.emergency_braking:main',
+            'wall_following = reactive_autonomy.wall_following:main',
         ],
     },
 )

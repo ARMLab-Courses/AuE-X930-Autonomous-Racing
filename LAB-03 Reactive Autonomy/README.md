@@ -37,4 +37,5 @@ Name    |    Description    |    Default Value    |    Minimum Value    |    Max
 
 ```bash
 ros2 param set emergency_braking <param_name> <param_value>
+ros2 param set wall_following <param_name> <param_value>
 ```
