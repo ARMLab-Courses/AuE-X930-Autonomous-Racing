@@ -67,11 +67,15 @@ class Emergency_Braking(Node):
         self.declare_parameter('dtc_offset', 0.265) # LIDAR to bumper offset (m)
         self.declare_parameter('dtc_threshold', 0.855) # Threshold for emergency braking (m)
         self.declare_parameter('front_scan_sector', 0.0) # Front laserscan sector (degrees)
+        self.declare_parameter('perception_verbose', True) # Verbose perception output
+        self.declare_parameter('control_verbose', True) # Verbose control output
         self.control_rate = self.get_parameter('control_rate').value
         self.speed_setpoint = self.get_parameter('speed_setpoint').value
         self.dtc_offset = self.get_parameter('dtc_offset').value
         self.dtc_threshold = self.get_parameter('dtc_threshold').value
         self.front_scan_sector = self.get_parameter('front_scan_sector').value
+        self.perception_verbose = self.get_parameter('perception_verbose').value
+        self.control_verbose = self.get_parameter('control_verbose').value
 
         # Publishers and subscribers
         self.vehicle_scan_sub = self.create_subscription(LaserScan, '/scan', self.perception_callback, qos_profile) # Subscriber which will subscribe to LaserScan message on the topic '/scan' adhering to 'qos_profile' QoS profile
@@ -91,7 +95,9 @@ class Emergency_Braking(Node):
             'speed_setpoint',
             'dtc_offset',
             'dtc_threshold',
-            'front_scan_sector'
+            'front_scan_sector',
+            'perception_verbose',
+            'control_verbose'
         )
         for parameter in self.get_parameters(names):
             setattr(self, parameter.name, parameter.value)
@@ -104,24 +110,28 @@ class Emergency_Braking(Node):
             start_index = int((LIDAR_FRONT_IDX - (self.front_scan_sector/LIDAR_ANG_RES)/2))
             end_index = int((LIDAR_FRONT_IDX + (self.front_scan_sector/LIDAR_ANG_RES)/2))
             self.front_scan = np.mean(msg.ranges[start_index:end_index])
-        print('Front scan: {:.3f} m'.format(self.front_scan))
+        if self.perception_verbose:
+            print('Front scan: {:.3f} m'.format(self.front_scan))
 
     def control_callback(self):
         # Nominal behavior: let vehicle continue its motion
         if self.front_scan - self.dtc_offset > self.dtc_threshold:
             if self.speed_setpoint > SAFE_SPEED_MPS:
                 self.speed_setpoint = SAFE_SPEED_MPS # Limit the speed setpoint to the safe speed
-                print('Speed setpoint limited to {} m/s'.format(self.speed_setpoint))
+                if self.control_verbose:
+                    print('Speed setpoint limited to {} m/s'.format(self.speed_setpoint))
             self.ctrl_msg.drive.speed = self.speed_setpoint/MAX_SPEED_MPS # Set linear velocity (normalized)
             self.ctrl_msg.drive.steering_angle = 0.0 # Set steering angle (normalized)
             self.vehicle_ctrl_pub.publish(self.ctrl_msg) # Publish vehicle control message
-            print('Speed setpoint: {} m/s'.format(self.speed_setpoint))
+            if self.control_verbose:
+                print('Speed setpoint: {} m/s'.format(self.speed_setpoint))
         # Collision imminent: execute emergency braking maneuver
         else:
             self.ctrl_msg.drive.speed = 0.0 # Set linear velocity (normalized)
             self.ctrl_msg.drive.steering_angle = 0.0 # Set steering angle (normalized)
             self.vehicle_ctrl_pub.publish(self.ctrl_msg) # Publish vehicle control message
-            print('AEB triggered!')
+            if self.control_verbose:
+                print('AEB triggered!')
 
 ################################################################################
 
