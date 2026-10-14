@@ -43,7 +43,7 @@ import numpy as np # Numerical computations
 MAX_SPEED_MPS = 6.0 # DBW speed limit for the drive motor (m/s)
 SAFE_SPEED_MPS = 1.5 # Safe speed limit for the vehicle (m/s)
 LIDAR_ANG_RES = 0.25 # LIDAR angular resolution (degrees)
-LIDAR_FRONT_IDX = 720 # LIDAR scan frontal index
+LIDAR_FRONT_IDX = 720 # LIDAR scan front index
 
 ################################################################################
 
@@ -66,7 +66,7 @@ class Emergency_Braking(Node):
         self.declare_parameter('speed_setpoint', 1.0) # Desired vehicle speed (m/s)
         self.declare_parameter('dtc_offset', 0.265) # LIDAR to bumper offset (m)
         self.declare_parameter('dtc_threshold', 0.855) # Threshold for emergency braking (m)
-        self.declare_parameter('front_scan_sector', 0.0) # Frontal laserscan sector (degrees)
+        self.declare_parameter('front_scan_sector', 0.0) # Front laserscan sector (degrees)
         self.control_rate = self.get_parameter('control_rate').value
         self.speed_setpoint = self.get_parameter('speed_setpoint').value
         self.dtc_offset = self.get_parameter('dtc_offset').value
@@ -82,7 +82,7 @@ class Emergency_Braking(Node):
         self.create_timer(timer_period, self.control_callback) # Define timer to execute 'control_callback()' every 'timer_period' seconds
 
         # Member variables
-        self.front_scan = np.inf # Initialize variable to capture the frontal laserscan
+        self.front_scan = np.inf # Initialize variable to capture the front laserscan
         self.ctrl_msg = AckermannDriveStamped() # Vehicle control commands
 
     def parameter_callback(self):
@@ -98,13 +98,13 @@ class Emergency_Braking(Node):
 
     def perception_callback(self, msg):
         if self.front_scan_sector == 0:
-            self.front_scan = msg.ranges[LIDAR_FRONT_IDX] # Single frontal scan measurement
+            self.front_scan = msg.ranges[LIDAR_FRONT_IDX] # Single front scan measurement
         else:
-            # Average measurement over the frontal scan sector
+            # Average measurement over the front scan sector
             start_index = int((LIDAR_FRONT_IDX - (self.front_scan_sector/LIDAR_ANG_RES)/2))
             end_index = int((LIDAR_FRONT_IDX + (self.front_scan_sector/LIDAR_ANG_RES)/2))
             self.front_scan = np.mean(msg.ranges[start_index:end_index])
-        print('Frontal scan: {:.3f} m'.format(self.front_scan))
+        print('Front scan: {:.3f} m'.format(self.front_scan))
 
     def control_callback(self):
         # Nominal behavior: let vehicle continue its motion
