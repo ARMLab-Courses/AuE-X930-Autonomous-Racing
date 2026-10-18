@@ -5,7 +5,7 @@
 This guide introduces the NeoRacer vehicle architecture and covers the handover, unboxing, setup, installation, and testing instructions (with troubleshooting tips). It assumes working knowledge of Linux, Python, and ROS 2.
 
 > [!NOTE]
-> **Course context:** NeoRacer serves as a 1:12 scale reference platform for this course. It integrates onboard compute, sensing (encoder, IMU, camera, and LiDAR), actuation (drive-by-wire and steer-by-wire), and vehicle interfaces into a compact Ackermann-steered 4WD chassis, providing the hardware foundation for autonomous vehicle development.
+> **Course context:** NeoRacer serves as a 1:12 scale reference platform for this course. It integrates onboard compute, sensing (encoder, IMU, camera, and LIDAR), actuation (drive-by-wire and steer-by-wire), and vehicle interfaces into a compact Ackermann-steered 4WD chassis, providing the hardware foundation for autonomous vehicle development.
 
 ## Learning goals
 
