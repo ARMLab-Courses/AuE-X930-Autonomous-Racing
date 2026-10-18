@@ -145,7 +145,7 @@ Each team will return the NeoRacer hardware and associated components to the des
 
 Teams may be responsible for any damage, loss, or misuse of the NeoRacer hardware and associated components during the checkout period, subject to applicable course policies.
 
-Each team will sign the [Equipment Acknowledgment Form](Equipment-Acknowledgment-Form.docx) to complete the handover.
+Each team will sign the [Equipment Acknowledgment](Acknowledgment.pdf) to complete the handover.
 
 ## 2. Unbox the course equipment package
 
