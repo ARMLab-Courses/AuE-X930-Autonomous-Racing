@@ -4,8 +4,8 @@
 
 The `reactive_autonomy` ROS 2 package contains reference implementations of multiple reactive autonomy algorithms (perception-enhanced vehicle control), which are relevant to autonomous racing application:
 
-- **Emergency Braking** algorithm uses LIDAR measurements to detect imminent frontal collisions and trigger emergency braking when necessary.
-- **Wall Following** algorithm uses LIDAR measurements to maintain a safe distance from track boundaries and navigate the racetrack without collisions.
+- **Emergency braking** algorithm uses LIDAR measurements to detect imminent frontal collisions and trigger emergency braking when necessary.
+- **Wall following** algorithm uses LIDAR measurements to maintain a safe distance from track boundaries and navigate the racetrack without collisions.
 
 > [!NOTE]
 > - The ROS 2 nodes subscribe to `/scan` (`sensor_msgs/msg/LaserScan`) and publish to `/drive` (`ackermann_msgs/msg/AckermannDriveStamped`).
@@ -140,3 +140,13 @@ reactive_autonomy/
     ```bash
     ros2 param set <node_name> <param_name> <param_value>
     ```
+
+## Expected outcomes
+
+### Emergency braking
+
+![Emergency braking](demo_videos/emergency_braking.gif)
+
+### Wall following
+
+![Wall following](demo_videos/wall_following.gif)
